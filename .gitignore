@@ -19,6 +19,5 @@ yarn-error.log
 /.editorconfig
 /.env.example
 /.gitattributes
-/bootstrap/cache
 /database/.gitignore
 storage/
