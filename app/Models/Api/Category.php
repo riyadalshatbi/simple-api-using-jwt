@@ -11,5 +11,5 @@ class Category extends Model
 
     public $table = 'categories';
     public $timestamps = true;
-    protected $filleble = ['name_ar','name_en','active','created_at','updated_at'];
+    protected $fillable = ['name_ar','name_en','active','created_at','updated_at'];
 }

@@ -22,7 +22,7 @@ class CategoriesController extends Controller
             $id = $request->id;
             $categories = Category::find($id);
             if(!$categories)
-                return $this->returnError(500,'this record is not found');
+                return $this->returnError('this record is not found',404);
             return $this->returnData('category',$categories,'success');
         }
     }
@@ -31,8 +31,8 @@ class CategoriesController extends Controller
             $id = $request->id;
             $categories = Category::where('id',$id)->update(['active' => $request->active]);
             if(!$categories)
-                return $this->returnError(500,'this record is not found');
-            return $this->returnSuccessMessage('status is changed successfully');
+                return $this->returnError('this record is not found',404);
+            return $this->returnSuccess('category status is changed successfully',201);
         }
     }
 }
