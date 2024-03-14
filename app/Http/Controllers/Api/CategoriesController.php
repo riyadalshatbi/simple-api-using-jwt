@@ -25,6 +25,7 @@ class CategoriesController extends Controller
                 return $this->returnError('this record is not found',404);
             return $this->returnData('category',$categories,'success');
         }
+        return $this->returnError('not found',404);
     }
     public function change_category_status(Request $request){
         if(isset($request->id) and !empty($request->id)){

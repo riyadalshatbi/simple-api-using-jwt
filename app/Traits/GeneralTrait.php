@@ -41,7 +41,7 @@ trait GeneralTrait{
         return $this->returnError($validator->errors()->first(),$code);
     }
 
-    protected function get_error_code($fields){
+    protected function get_error_code($fields = 404){
         switch ($fields) {
             case 'email':
                 return 'E.400';
@@ -57,7 +57,7 @@ trait GeneralTrait{
                 break;
             
             default:
-                return '';
+                return '404';
                 break;
         }
     }

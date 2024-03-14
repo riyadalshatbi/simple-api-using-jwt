@@ -7,6 +7,7 @@ use App\Models\Admin;
 use App\Traits\GeneralTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Auth;
 
 class AuthController extends Controller
 {
@@ -24,7 +25,15 @@ class AuthController extends Controller
                 $code = $this->returnCodeToInput($validator);
                 return $this->validationError($code,$validator);
             }
-            return $this->returnSuccess('done',201);
+            $credentials = $request->only(['email','password']);
+            $token = Auth::guard('admin-api')->attempt($credentials);
+            if(!$token){
+                $error_code = $this->get_error_code();
+                return $this->returnError('there is no record', $error_code);
+            }
+            $admin = Auth::guard('admin-api')->user();
+            $admin->token = $token;
+            return $this->returnData('admin',$admin,'Authentication data is success');
         }catch(\Exception $e){
             return $this->returnError($e->getMessage(),$e->getCode());
         }
