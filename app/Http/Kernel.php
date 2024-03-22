@@ -66,5 +66,6 @@ class Kernel extends HttpKernel
         'check_Password' => \App\Http\Middleware\CheckPassword::class,
         'change_language' => \App\Http\Middleware\ChangeLanguage::class,
         'check_admin' => \App\Http\Middleware\CheckAdmin::class,
+        'guard_type' =>  \App\Http\Middleware\AssignGuard::class,
     ];
 }
