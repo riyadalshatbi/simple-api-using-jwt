@@ -3,6 +3,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\CategoriesController;
 use App\Http\Controllers\Api\Admin\AuthController;
+use App\Http\Controllers\Api\User\AuthUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,8 +28,16 @@ Route::group(['middleware'=>['api','check_Password','change_language'],'namespac
 
     Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
         Route::post('login',[AuthController::class,'login']);
+        Route::post('logout',[AuthController::class,'logout'])->middleware(['guard_type:admin-api']);
+    });
+
+    Route::group(['namespace'=>'user','prefix'=>'user'],function(){
+        Route::post('login',[AuthUserController::class,'login']);
+    });
+
+    Route::group(['middleware'=>'guard_type:user-api','prefix'=>'user'],function(){
+        Route::post('profile',function(){
+            return \Auth::user();
+        });
     });
 });
-// Route::group(['middleware'=>['api','check_Password','change_language','check_admin:admin-api'],'namespace'=>'Api'],function(){
-//     Route::get('offers',[CategoriesController::class,'index']);
-// });
