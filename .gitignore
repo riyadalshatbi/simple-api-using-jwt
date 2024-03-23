@@ -17,7 +17,6 @@ yarn-error.log
 /.idea
 /.vscode
 /.editorconfig
-/.env.example
 /.gitattributes
 /database/.gitignore
 storage/
