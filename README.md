@@ -15,3 +15,4 @@ Simple api token using Laravel-9 with JWT package
      <JWT_SECRET = JWT SECRET value >
 11- Add API password in env file : 
      <API_PASSWORD = 123456>
+12- Import Collection API File which found in root path
